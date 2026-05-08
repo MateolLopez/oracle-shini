@@ -1,0 +1,329 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import StarsBackground from "../components/StarsBackground.astro";
+
+import "../styles/dailyluck.css";
+---
+
+<BaseLayout title="Suerte del Día | Oracle of the Second Chances">
+  <StarsBackground />
+
+  <Nav />
+
+  <main class="daily-luck-page">
+    <section class="daily-luck-intro">
+      <p class="section-label">
+        &#10022; &nbsp; Lectura diaria &nbsp; &#10022;
+      </p>
+
+      <h1 class="section-heading">Suerte del Día</h1>
+
+      <div class="ornament">
+        <div class="ornament-line"></div>
+
+        <div class="ornament-moon">
+          <span>&#9789;</span>
+          <span>&#9670;</span>
+          <span>&#9790;</span>
+        </div>
+
+        <div class="ornament-line right"></div>
+      </div>
+
+      <p class="daily-luck-instruction">
+        Elige una carta y descubre tu mensaje de hoy
+      </p>
+    </section>
+
+    <section
+      class="daily-luck-cards"
+      id="cardsArea"
+      aria-label="Cartas de lectura diaria"
+    >
+      <div class="daily-luck-slot" id="slot0">
+        <button
+          class="daily-flip-wrap"
+          onclick="revealCard(0)"
+          title="Elige esta carta"
+          type="button"
+        >
+          <div class="daily-flip-inner" id="flip0">
+            <div class="daily-flip-face daily-flip-back">
+              <img
+                src="/images/cards/reverso-redondeado.png"
+                alt="Reverso de carta"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+              />
+              <div class="daily-flip-back-placeholder" style="display:none">
+                <span>&#9789;</span>
+              </div>
+            </div>
+
+            <div class="daily-flip-face daily-flip-front" id="front0">
+              <div class="daily-flip-front-placeholder" id="fph0">
+                <span>&#10022;</span>
+                <p>tu carta</p>
+              </div>
+            </div>
+          </div>
+        </button>
+
+        <p class="daily-card-name" id="name0"></p>
+        <p class="daily-card-meaning" id="meaning0"></p>
+      </div>
+
+      <div class="daily-luck-slot" id="slot1">
+        <button
+          class="daily-flip-wrap"
+          onclick="revealCard(1)"
+          title="Elige esta carta"
+          type="button"
+        >
+          <div class="daily-flip-inner" id="flip1">
+            <div class="daily-flip-face daily-flip-back">
+              <img
+                src="/images/cards/reverso-redondeado.png"
+                alt="Reverso de carta"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+              />
+              <div class="daily-flip-back-placeholder" style="display:none">
+                <span>&#9789;</span>
+              </div>
+            </div>
+
+            <div class="daily-flip-face daily-flip-front" id="front1">
+              <div class="daily-flip-front-placeholder" id="fph1">
+                <span>&#10022;</span>
+                <p>tu carta</p>
+              </div>
+            </div>
+          </div>
+        </button>
+
+        <p class="daily-card-name" id="name1"></p>
+        <p class="daily-card-meaning" id="meaning1"></p>
+      </div>
+
+      <div class="daily-luck-slot" id="slot2">
+        <button
+          class="daily-flip-wrap"
+          onclick="revealCard(2)"
+          title="Elige esta carta"
+          type="button"
+        >
+          <div class="daily-flip-inner" id="flip2">
+            <div class="daily-flip-face daily-flip-back">
+              <img
+                src="/images/cards/reverso-redondeado.png"
+                alt="Reverso de carta"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+              />
+              <div class="daily-flip-back-placeholder" style="display:none">
+                <span>&#9789;</span>
+              </div>
+            </div>
+
+            <div class="daily-flip-face daily-flip-front" id="front2">
+              <div class="daily-flip-front-placeholder" id="fph2">
+                <span>&#10022;</span>
+                <p>tu carta</p>
+              </div>
+            </div>
+          </div>
+        </button>
+
+        <p class="daily-card-name" id="name2"></p>
+        <p class="daily-card-meaning" id="meaning2"></p>
+      </div>
+    </section>
+
+    <button
+      class="daily-reset-btn"
+      id="resetBtn"
+      onclick="resetReading()"
+      type="button"
+    >
+      ↺ &nbsp; Nueva lectura
+    </button>
+
+    <div class="daily-section-div">
+      <div class="div-line"></div>
+      <div class="daily-div-gem"></div>
+      <div class="div-line"></div>
+    </div>
+  </main>
+
+  <Footer />
+
+  <script is:inline>
+    const DECK = [
+      {
+        name: "Eye of the Cosmos",
+        img: "/images/cards/eye-of-the-cosmos.jpg",
+        meaning:
+          "El universo te observa con atención. Es momento de expandir tu visión más allá de lo conocido y confiar en la inteligencia del cosmos.",
+      },
+      {
+        name: "Creator of Worlds",
+        img: "/images/cards/creator-of-worlds.jpg",
+        meaning:
+          "Tienes el poder de dar forma a tu realidad. Cada pensamiento es semilla; cada acción, el inicio de algo nuevo y poderoso.",
+      },
+      {
+        name: "The Second Chance",
+        img: "/images/cards/the-second-chance.jpg",
+        meaning:
+          "El pasado no es una sentencia. Hoy se abre una puerta que creías cerrada para siempre. Entra sin miedo.",
+      },
+      {
+        name: "The Wanderer",
+        img: null,
+        meaning:
+          "No todo camino necesita destino conocido. La sabiduría nace de recorrer lo incierto con el corazón abierto.",
+      },
+      {
+        name: "The Mirror",
+        img: "/images/cards/the-mirror.jpg",
+        meaning:
+          "Lo que ves en los demás es reflejo tuyo. Observa con compasión y encontrarás la respuesta que buscabas.",
+      },
+      {
+        name: "Keeper of Stars",
+        img: null,
+        meaning:
+          "Guarda tus sueños con cuidado, pero no los encierres. El momento de compartirlos contigo misma ha llegado.",
+      },
+    ];
+
+    let deck = [];
+    let revealed = 0;
+
+    function shuffle(arr) {
+      const a = [...arr];
+
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+
+      return a;
+    }
+
+    function init() {
+      deck = shuffle(DECK).slice(0, 3);
+      revealed = 0;
+
+      for (let i = 0; i < 3; i++) {
+        const flip = document.getElementById("flip" + i);
+        const name = document.getElementById("name" + i);
+        const meaning = document.getElementById("meaning" + i);
+        const front = document.getElementById("front" + i);
+        const wrap = document.querySelector("#slot" + i + " .daily-flip-wrap");
+
+        if (!flip || !name || !meaning || !front || !wrap) continue;
+
+        flip.classList.remove("flipped");
+
+        name.classList.remove("visible");
+        meaning.classList.remove("visible");
+
+        name.textContent = "";
+        meaning.textContent = "";
+
+        front.innerHTML = "";
+        front.style.background = "var(--navy2)";
+
+        const placeholder = document.createElement("div");
+        placeholder.className = "daily-flip-front-placeholder";
+        placeholder.id = "fph" + i;
+        placeholder.innerHTML = "<span>&#10022;</span><p>tu carta</p>";
+
+        front.appendChild(placeholder);
+
+        wrap.style.cursor = "pointer";
+        wrap.style.pointerEvents = "all";
+      }
+
+      const resetBtn = document.getElementById("resetBtn");
+
+      if (resetBtn) {
+        resetBtn.classList.remove("visible");
+      }
+    }
+
+    function revealCard(idx) {
+      const flip = document.getElementById("flip" + idx);
+      const wrap = document.querySelector("#slot" + idx + " .daily-flip-wrap");
+
+      if (!flip || !wrap || flip.classList.contains("flipped")) return;
+
+      const card = deck[idx];
+      const front = document.getElementById("front" + idx);
+      const fph = document.getElementById("fph" + idx);
+
+      if (!card || !front || !fph) return;
+
+      if (card.img) {
+        fph.style.display = "none";
+        front.innerHTML = "";
+
+        const img = document.createElement("img");
+        img.src = card.img;
+        img.alt = card.name;
+
+        img.onerror = () => {
+          front.innerHTML = "";
+
+          const ph = document.createElement("div");
+          ph.className = "daily-flip-front-placeholder";
+          ph.id = "fph" + idx;
+          ph.innerHTML = "<span>&#10022;</span><p>" + card.name + "</p>";
+
+          front.appendChild(ph);
+        };
+
+        front.appendChild(img);
+      } else {
+        fph.innerHTML = "<span>&#10022;</span><p>" + card.name + "</p>";
+      }
+
+      setTimeout(() => {
+        flip.classList.add("flipped");
+        wrap.style.cursor = "default";
+        wrap.style.pointerEvents = "none";
+      }, 20);
+
+      setTimeout(() => {
+        const nameEl = document.getElementById("name" + idx);
+        const meaningEl = document.getElementById("meaning" + idx);
+
+        if (!nameEl || !meaningEl) return;
+
+        nameEl.textContent = card.name;
+        meaningEl.textContent = card.meaning;
+
+        nameEl.classList.add("visible");
+        meaningEl.classList.add("visible");
+      }, 500);
+
+      revealed++;
+
+      if (revealed === 3) {
+        setTimeout(() => {
+          document.getElementById("resetBtn")?.classList.add("visible");
+        }, 900);
+      }
+    }
+
+    function resetReading() {
+      init();
+    }
+
+    window.revealCard = revealCard;
+    window.resetReading = resetReading;
+
+    init();
+  </script>
+</BaseLayout>

@@ -1,17 +1,139 @@
 ---
-
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import StarsBackground from '../components/StarsBackground.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <Nav />
+  <StarsBackground />
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+
+  <div class="card-fan" id="cardFan">
+    <!-- Carta izquierda (reverso) -->
+    <div class="card-wrapper card-left">
+      <img src="/images/cards/reverso-redondeado.png" alt="Reverso carta" onerror="this.parentElement.style.background='rgba(8,21,64,0.9)';this.style.display='none'">
+    </div>
+    <!-- Carta derecha (reverso) -->
+    <div class="card-wrapper card-right">
+      <img src="/images/cards/reverso-redondeado.png" alt="Reverso carta" onerror="this.parentElement.style.background='rgba(8,21,64,0.9)';this.style.display='none'">
+    </div>
+    <!-- Carta frontal principal -->
+    <div class="card-wrapper card-front">
+      <img src="/images/cards/eye-of-the-cosmos.jpg" alt="Eye of the Cosmos" onerror="this.parentElement.style.background='rgba(8,21,64,0.9)';this.style.display='none'">
+    </div>
+  </div>
+
+  <p class="oracle-subtitle-small">&#10022; &nbsp; Una invitación del cosmos &nbsp; &#10022;</p>
+  <h1 class="oracle-title">Oracle of the<br>Second Chances</h1>
+
+  <div class="ornament">
+    <div class="ornament-line"></div>
+    <div class="ornament-moon">
+      <span style="font-size:0.7rem;">&#9789;</span>
+      <span style="font-size:0.5rem;letter-spacing:0.1em;font-family:'Cinzel',serif;color:var(--gold);text-transform:uppercase;">&#9670;</span>
+      <span style="font-size:0.7rem;">&#9790;</span>
+    </div>
+    <div class="ornament-line right"></div>
+  </div>
+
+  <p class="oracle-tagline">Un recordatorio silencioso de que siempre hay otro camino hacia adelante.</p>
+
+  <a href="https://kickstarter.com" target="_blank" class="btn-kick">&#10022; &nbsp; Ver en Kickstarter &nbsp; ↗</a>
+</section>
+
+<div class="section-divider">
+  <div class="div-line"></div>
+  <div class="div-star"></div>
+  <div class="div-line"></div>
+</div>
+
+<!-- CENTRO: PREVIEW -->
+<section class="center-section">
+  <p class="section-label">&#10022; &nbsp; Las cartas &nbsp; &#10022;</p>
+  <h2 class="section-heading">Una muestra del deck</h2>
+
+  <button class="btn-gallery" onclick="toggleGallery()">
+    <span class="gem-icon"></span>
+    <span id="gallery-label">Ver algunas cartas</span>
+    <span class="gem-icon"></span>
+  </button>
+
+  <div class="card-grid" id="cardGrid">
+
+    <div class="preview-card">
+      <img src="/images/cards/eye-of-the-cosmos.jpg" alt="Eye of the Cosmos"
+        onerror="this.parentElement.classList.add('card-placeholder');this.style.display='none';this.parentElement.innerHTML+='<div class=ph-moon>&#9789;</div><div class=ph-text>Eye of the Cosmos</div>'">
+      <div class="card-label">Eye of the Cosmos</div>
+    </div>
+
+    <div class="preview-card">
+      <img src="/images/cards/creator-of-worlds.jpg" alt="Creator of Worlds"
+        onerror="this.parentElement.classList.add('card-placeholder');this.style.display='none';this.parentElement.innerHTML+='<div class=ph-moon>&#10022;</div><div class=ph-text>Creator of Worlds</div>'">
+      <div class="card-label">Creator of Worlds</div>
+    </div>
+
+    <div class="preview-card card-placeholder">
+      <div class="ph-moon">&#9789;</div>
+      <div class="ph-text">Próximamente</div>
+    </div>
+
+    <div class="preview-card card-placeholder">
+      <div class="ph-moon">&#10022;</div>
+      <div class="ph-text">Próximamente</div>
+    </div>
+
+    <div class="preview-card card-placeholder">
+      <div class="ph-moon">&#9790;</div>
+      <div class="ph-text">Próximamente</div>
+    </div>
+
+    <div class="preview-card card-placeholder">
+      <div class="ph-moon">&#9670;</div>
+      <div class="ph-text">Próximamente</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider">
+  <div class="div-line"></div>
+  <div class="div-star"></div>
+  <div class="div-line"></div>
+</div>
+
+<!-- FOOTER -->
+<Footer />
+
+<script is:inline>
+
+  let galleryOpen = false;
+
+  function toggleGallery() {
+    galleryOpen = !galleryOpen;
+
+    const grid = document.getElementById('cardGrid');
+    const label = document.getElementById('gallery-label');
+
+    if (!grid || !label) return;
+
+    grid.classList.toggle('visible', galleryOpen);
+    label.textContent = galleryOpen ? 'Ocultar cartas' : 'Ver algunas cartas';
+  }
+
+  window.toggleGallery = toggleGallery;
+
+  document.addEventListener('mousemove', e => {
+    const fan = document.getElementById('cardFan');
+    if (!fan) return;
+
+    const x = (e.clientX / window.innerWidth - 0.5) * 8;
+    const y = (e.clientY / window.innerHeight - 0.5) * 4;
+
+    fan.style.transform = `translate(${x}px, ${y}px)`;
+  });
+</script>
+</BaseLayout>

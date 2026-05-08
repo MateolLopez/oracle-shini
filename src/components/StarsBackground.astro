@@ -1,0 +1,31 @@
+<div class="stars-bg" data-stars-background></div>
+
+<script is:inline>
+  const starsContainers = document.querySelectorAll('[data-stars-background]');
+
+  starsContainers.forEach((starsEl) => {
+    if (starsEl.dataset.initialized === 'true') return;
+
+    starsEl.dataset.initialized = 'true';
+
+    for (let i = 0; i < 120; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+
+      const size = Math.random() * 2 + 0.5;
+
+      s.style.cssText = `
+        left:${Math.random() * 100}%;
+        top:${Math.random() * 100}%;
+        width:${size}px;
+        height:${size}px;
+        --d:${2 + Math.random() * 4}s;
+        --delay:${Math.random() * 5}s;
+        --min:${0.1 + Math.random() * 0.2};
+        --max:${0.6 + Math.random() * 0.4};
+      `;
+
+      starsEl.appendChild(s);
+    }
+  });
+</script>

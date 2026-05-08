@@ -1,0 +1,233 @@
+.daily-luck-page {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 2rem 3rem;
+}
+
+.daily-luck-intro {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.daily-luck-instruction {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: rgba(200, 185, 255, 0.75);
+  max-width: 420px;
+  line-height: 1.7;
+}
+
+.daily-luck-cards {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.daily-luck-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  width: 200px;
+}
+
+/* FLIP */
+.daily-flip-wrap {
+  width: 200px;
+  height: 300px;
+  perspective: 900px;
+  cursor: pointer;
+}
+
+.daily-flip-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.daily-flip-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.daily-flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.daily-flip-back {
+  border: 1px solid rgba(201, 169, 110, 0.35);
+  background: var(--navy2);
+}
+
+.daily-flip-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.daily-flip-back-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(160deg, var(--navy2), var(--navy3));
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(201, 169, 110, 0.3);
+}
+
+.daily-flip-back-placeholder span {
+  font-size: 2.5rem;
+  color: rgba(201, 169, 110, 0.25);
+}
+
+.daily-flip-front {
+  transform: rotateY(180deg);
+  background: var(--navy2);
+  border: 1px solid rgba(201, 169, 110, 0.4);
+  border-radius: 14px;
+}
+
+.daily-flip-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.daily-flip-front::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.daily-flip-front-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(160deg, var(--navy3), var(--navy2));
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.daily-flip-front-placeholder span {
+  font-size: 2rem;
+  color: rgba(201, 169, 110, 0.3);
+}
+
+.daily-flip-front-placeholder p {
+  font-family: 'Cinzel', serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  color: rgba(201, 169, 110, 0.3);
+  text-transform: uppercase;
+}
+
+.daily-card-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold2);
+  text-align: center;
+  min-height: 1.2rem;
+  opacity: 0;
+  transition: opacity 0.4s 0.4s;
+}
+
+.daily-card-name.visible {
+  opacity: 1;
+}
+
+.daily-card-meaning {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: rgba(200, 185, 255, 0.65);
+  text-align: center;
+  line-height: 1.6;
+  max-width: 190px;
+  min-height: 3rem;
+  opacity: 0;
+  transition: opacity 0.4s 0.5s;
+}
+
+.daily-card-meaning.visible {
+  opacity: 1;
+}
+
+.daily-reset-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold2);
+  background: transparent;
+  border: 0.5px solid rgba(201, 169, 110, 0.4);
+  padding: 0.7rem 1.8rem;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  margin-top: 1rem;
+}
+
+.daily-reset-btn.visible {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.daily-reset-btn:hover {
+  background: rgba(201, 169, 110, 0.08);
+  border-color: var(--gold);
+}
+
+.daily-section-div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 800px;
+  margin: 1rem 0;
+}
+
+.daily-div-gem {
+  width: 7px;
+  height: 7px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  opacity: 0.6;
+}
+
+@media (max-width: 720px) {
+  .daily-luck-page {
+    padding: 3rem 1.25rem 2.5rem;
+  }
+
+  .daily-luck-cards {
+    gap: 2rem;
+  }
+}

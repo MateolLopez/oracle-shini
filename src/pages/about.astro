@@ -1,0 +1,244 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import StarsBackground from '../components/StarsBackground.astro';
+
+import '../styles/about.css';
+---
+
+<BaseLayout title="Sobre el Proyecto | Oracle of the Second Chances">
+  <StarsBackground />
+
+  <Nav />
+
+  <main class="about-page">
+    <section class="about-hero">
+      <p class="section-label">&#10022; &nbsp; La artista y el proyecto &nbsp; &#10022;</p>
+
+      <h1 class="section-heading">Sobre este Proyecto</h1>
+
+      <div class="ornament">
+        <div class="ornament-line"></div>
+
+        <div class="ornament-moon">
+          <span>&#9789;</span>
+          <span>&#9670;</span>
+          <span>&#9790;</span>
+        </div>
+
+        <div class="ornament-line right"></div>
+      </div>
+
+      <p class="about-tagline">
+        La historia detrás del Oracle of the Second Chances — y de quien lo dibujó carta a carta.
+      </p>
+    </section>
+
+    <div class="about-divider">
+      <div class="div-line"></div>
+      <div class="about-divider-gem"></div>
+      <div class="div-line"></div>
+    </div>
+
+    <section class="about-section">
+      <div class="about-two-col">
+        <div class="about-text-block">
+          <p class="about-eyebrow">&#10022; &nbsp; quién soy</p>
+
+          <h2 class="section-heading">La artista detrás del deck</h2>
+
+          <p class="about-body">
+            Soy [nombre], ilustradora y creadora visual especializada en arte conceptual y narrativo.
+            Mi trabajo vive en la intersección entre lo simbólico y lo emocional — mundos donde cada
+            línea tiene intención y cada color cuenta algo.
+          </p>
+
+          <p class="about-body">
+            Llevo [X] años explorando el arte digital, la acuarela y el diseño de personajes.
+            Este oráculo es el proyecto más personal que he creado: nació de mis propias segundas
+            oportunidades y del deseo de darles forma visual.
+          </p>
+        </div>
+
+        <div class="about-img-block">
+          <img
+            src="/images/cards/tapete.jpg"
+            alt="La artista"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+          />
+
+          <div class="about-img-placeholder" style="display:none">
+            <div class="about-img-placeholder-icon">&#9789;</div>
+            <div class="about-img-placeholder-text">
+              Foto de la artista<br />[insertar imagen]
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="about-divider">
+      <div class="div-line"></div>
+      <div class="about-divider-gem"></div>
+      <div class="div-line"></div>
+    </div>
+
+    <section class="about-section about-section-alt">
+      <div class="about-two-col">
+        <div class="about-img-block">
+          <img
+            src="/images/cards/tapete.jpg"
+            alt="El deck"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+          />
+
+          <div class="about-img-placeholder" style="display:none">
+            <div class="about-img-placeholder-icon">&#10022;</div>
+            <div class="about-img-placeholder-text">
+              Imagen del deck / caja<br />[insertar imagen]
+            </div>
+          </div>
+        </div>
+
+        <div class="about-text-block">
+          <p class="about-eyebrow">&#10022; &nbsp; el proyecto</p>
+
+          <h2 class="section-heading">¿Qué es el Oracle of the Second Chances?</h2>
+
+          <p class="about-body">
+            Es un deck de cartas oráculo de [X] cartas, diseñado para invitarte a revisitar los caminos
+            que creías cerrados. A través de símbolos y reflexión, cada carta habla de cambio, perdón
+            y comienzos que emergen cuando estamos listos para recibirlos.
+          </p>
+
+          <p class="about-sub-heading">¿Por qué lo estoy creando?</p>
+
+          <p class="about-body">
+            Este proyecto nació de una creencia personal: que todos merecemos recordatorios visuales
+            de nuestra propia capacidad de comenzar de nuevo. No es un oráculo de respuestas rápidas:
+            es un espacio para la reflexión, la sanación y la elección consciente.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="about-divider">
+      <div class="div-line"></div>
+      <div class="about-divider-gem"></div>
+      <div class="div-line"></div>
+    </div>
+
+    <section class="about-section">
+      <div class="about-making">
+        <div class="about-making-heading">
+          <p class="about-eyebrow">&#10022; &nbsp; el proceso creativo &nbsp; &#10022;</p>
+
+          <h2 class="section-heading">Making of</h2>
+
+          <p class="about-making-note">
+            De los primeros bocetos a lápiz hasta las ilustraciones digitales finales — así nació cada carta.
+          </p>
+        </div>
+
+        <div class="about-sketches-grid">
+          <div class="about-sketch-card">
+            <img
+              src="/images/cards/eye-of-the-cosmos.jpg"
+              alt="Boceto 1"
+              onerror="this.style.display='none';this.parentElement.querySelector('.about-sketch-icon').style.opacity='1';this.parentElement.querySelector('.about-sketch-label').style.opacity='1'"
+            />
+
+            <div class="about-sketch-icon" style="opacity:0">&#10022;</div>
+            <div class="about-sketch-label" style="opacity:0">boceto 1</div>
+          </div>
+
+          <div class="about-sketch-card">
+            <img
+              src="/images/cards/creator-of-worlds.jpg"
+              alt="Boceto 2"
+              onerror="this.style.display='none';this.parentElement.querySelector('.about-sketch-icon').style.opacity='1';this.parentElement.querySelector('.about-sketch-label').style.opacity='1'"
+            />
+
+            <div class="about-sketch-icon" style="opacity:0">&#9789;</div>
+            <div class="about-sketch-label" style="opacity:0">boceto 2</div>
+          </div>
+
+          <div class="about-sketch-card">
+            <div class="about-sketch-icon">&#9670;</div>
+            <div class="about-sketch-label">boceto 3 · [imagen]</div>
+          </div>
+        </div>
+
+        <div class="about-videos-grid">
+          <div class="about-video-card">
+            <div class="about-play-btn">
+              <div class="about-play-triangle"></div>
+            </div>
+
+            <div class="about-video-label">Speedpaint · Eye of the Cosmos</div>
+          </div>
+
+          <div class="about-video-card">
+            <div class="about-play-btn">
+              <div class="about-play-triangle"></div>
+            </div>
+
+            <div class="about-video-label">Speedpaint · Creator of Worlds</div>
+          </div>
+        </div>
+
+        <p class="about-video-note">
+          Los videos de speedpaint se incrustan como embeds de YouTube o Vimeo
+        </p>
+      </div>
+    </section>
+
+    <div class="about-divider">
+      <div class="div-line"></div>
+      <div class="about-divider-gem"></div>
+      <div class="div-line"></div>
+    </div>
+
+    <section class="about-status">
+      <div class="about-status-inner">
+        <div class="about-status-badge">
+          <div class="about-status-dot"></div>
+          En desarrollo · Pre-lanzamiento
+        </div>
+
+        <div class="about-progress">
+          <div class="about-progress-steps">
+            <div class="about-progress-step done">Concepto</div>
+            <div class="about-progress-step done">Ilustración</div>
+            <div class="about-progress-step active">Producción</div>
+            <div class="about-progress-step">Kickstarter</div>
+            <div class="about-progress-step">Impresión</div>
+          </div>
+
+          <div class="about-progress-track">
+            <div class="about-progress-fill"></div>
+            <div class="about-progress-marker"></div>
+          </div>
+        </div>
+
+        <p class="about-status-text">
+          El deck está actualmente en fase de producción artística. Las cartas están siendo finalizadas
+          una a una, con cada detalle revisado para que la experiencia física sea tan especial como las
+          ilustraciones. El lanzamiento en Kickstarter se aproxima — y tú puedes ser parte de ello desde el inicio.
+        </p>
+
+        <a
+          href="https://kickstarter.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-kick"
+        >
+          &#10022; &nbsp; Ver en Kickstarter &nbsp; ↗
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
