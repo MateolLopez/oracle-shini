@@ -1,11 +1,15 @@
+---
+const base  = import.meta.env.BASE_URL;
+---
+
 <nav>
-  <a href="/">Inicio</a>
+  <a href={base}>Inicio</a>
   <div class="nav-gem"></div>
 
-  <a href="/dailyluck">El Oráculo</a>
+  <a href={`${base}dailyluck`}>El Oráculo</a>
   <div class="nav-gem"></div>
 
-  <a href="/about">Sobre el proyecto</a>
+  <a href={`${base}about`}>Sobre el proyecto</a>
   <div class="nav-gem"></div>
 
   <a href="https://kickstarter.com" target="_blank" rel="noopener noreferrer">Kickstarter</a>

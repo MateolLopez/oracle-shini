@@ -144,7 +144,7 @@ import '../styles/about.css';
         <div class="about-sketches-grid">
           <div class="about-sketch-card">
             <img
-              src="/images/cards/eye-of-the-cosmos.jpg"
+              src={`${import.meta.env.BASE_URL}images/cards/eye-of-the-cosmos.jpg`}
               alt="Boceto 1"
               onerror="this.style.display='none';this.parentElement.querySelector('.about-sketch-icon').style.opacity='1';this.parentElement.querySelector('.about-sketch-label').style.opacity='1'"
             />
@@ -155,7 +155,7 @@ import '../styles/about.css';
 
           <div class="about-sketch-card">
             <img
-              src="/images/cards/creator-of-worlds.jpg"
+              src={`${import.meta.env.BASE_URL}images/cards/creator-of-worlds.jpg`}
               alt="Boceto 2"
               onerror="this.style.display='none';this.parentElement.querySelector('.about-sketch-icon').style.opacity='1';this.parentElement.querySelector('.about-sketch-label').style.opacity='1'"
             />

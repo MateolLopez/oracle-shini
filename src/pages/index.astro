@@ -15,15 +15,15 @@ import StarsBackground from '../components/StarsBackground.astro';
   <div class="card-fan" id="cardFan">
     <!-- Carta izquierda (reverso) -->
     <div class="card-wrapper card-left">
-      <img src="/images/cards/reverso-redondeado.png" alt="Reverso carta" onerror="this.parentElement.style.background='rgba(8,21,64,0.9)';this.style.display='none'">
+      <img src={`${import.meta.env.BASE_URL}images/cards/reverso-redondeado.png`} alt="Reverso carta" onerror="this.parentElement.style.background='rgba(8,21,64,0.9)';this.style.display='none'">
     </div>
     <!-- Carta derecha (reverso) -->
     <div class="card-wrapper card-right">
-      <img src="/images/cards/reverso-redondeado.png" alt="Reverso carta" onerror="this.parentElement.style.background='rgba(8,21,64,0.9)';this.style.display='none'">
+      <img src={`${import.meta.env.BASE_URL}images/cards/reverso-redondeado.png`} alt="Reverso carta" onerror="this.parentElement.style.background='rgba(8,21,64,0.9)';this.style.display='none'">
     </div>
     <!-- Carta frontal principal -->
     <div class="card-wrapper card-front">
-      <img src="/images/cards/eye-of-the-cosmos.jpg" alt="Eye of the Cosmos" onerror="this.parentElement.style.background='rgba(8,21,64,0.9)';this.style.display='none'">
+      <img src={`${import.meta.env.BASE_URL}images/cards/eye-of-the-cosmos.jpg`} alt="Eye of the Cosmos" onerror="this.parentElement.style.background='rgba(8,21,64,0.9)';this.style.display='none'">
     </div>
   </div>
 
@@ -64,17 +64,23 @@ import StarsBackground from '../components/StarsBackground.astro';
 
   <div class="card-grid" id="cardGrid">
 
-    <div class="preview-card">
-      <img src="/images/cards/eye-of-the-cosmos.jpg" alt="Eye of the Cosmos"
-        onerror="this.parentElement.classList.add('card-placeholder');this.style.display='none';this.parentElement.innerHTML+='<div class=ph-moon>&#9789;</div><div class=ph-text>Eye of the Cosmos</div>'">
-      <div class="card-label">Eye of the Cosmos</div>
-    </div>
+<div class="preview-card">
+  <img 
+    src={`${import.meta.env.BASE_URL}images/cards/eye-of-the-cosmos.jpg`} 
+    alt="Eye of the Cosmos"
+    onerror="handlePreviewCardError(this, '&#9789;', 'Eye of the Cosmos')"
+  >
+  <div class="card-label">Eye of the Cosmos</div>
+</div>
 
-    <div class="preview-card">
-      <img src="/images/cards/creator-of-worlds.jpg" alt="Creator of Worlds"
-        onerror="this.parentElement.classList.add('card-placeholder');this.style.display='none';this.parentElement.innerHTML+='<div class=ph-moon>&#10022;</div><div class=ph-text>Creator of Worlds</div>'">
-      <div class="card-label">Creator of Worlds</div>
-    </div>
+<div class="preview-card">
+  <img 
+    src={`${import.meta.env.BASE_URL}images/cards/creator-of-worlds.jpg`} 
+    alt="Creator of Worlds"
+    onerror="handlePreviewCardError(this, '&#10022;', 'Creator of Worlds')"
+  >
+  <div class="card-label">Creator of Worlds</div>
+</div>
 
     <div class="preview-card card-placeholder">
       <div class="ph-moon">&#9789;</div>
@@ -107,9 +113,7 @@ import StarsBackground from '../components/StarsBackground.astro';
 
 <!-- FOOTER -->
 <Footer />
-
 <script is:inline>
-
   let galleryOpen = false;
 
   function toggleGallery() {
@@ -124,7 +128,29 @@ import StarsBackground from '../components/StarsBackground.astro';
     label.textContent = galleryOpen ? 'Ocultar cartas' : 'Ver algunas cartas';
   }
 
+  function handlePreviewCardError(img, icon, text) {
+    img.onerror = null;
+
+    const card = img.parentElement;
+    if (!card) return;
+
+    img.remove();
+    card.classList.add('card-placeholder');
+
+    const iconElement = document.createElement('div');
+    iconElement.className = 'ph-moon';
+    iconElement.innerHTML = icon;
+
+    const textElement = document.createElement('div');
+    textElement.className = 'ph-text';
+    textElement.textContent = text;
+
+    card.insertBefore(textElement, card.firstChild);
+    card.insertBefore(iconElement, card.firstChild);
+  }
+
   window.toggleGallery = toggleGallery;
+  window.handlePreviewCardError = handlePreviewCardError;
 
   document.addEventListener('mousemove', e => {
     const fan = document.getElementById('cardFan');
